@@ -4,13 +4,22 @@ module RaceBet
     class << self
       def score(guesses, winners)
         result = 0
-        guesses.each_with_index do |guess, position|
-          result += 15 if guess == winners[position] && position == 0
-          result += 10 if guess == winners[position] && position == 1
-          result += 5 if guess == winners[position] && position == 2
-          result += 3 if guess == winners[position] && position == 3
-          result += 1 if guess == winners[position] && position == 4
-          result += 1 if winners.include?(guess) && position != winners.index(guess)
+        guesses.each_with_index do |guess, place|
+          result += if guess == winners[place] && place == 0
+                      15
+                    elsif guess == winners[place] && place == 1
+                      10
+                    elsif guess == winners[place] && place == 2
+                      5
+                    elsif guess == winners[place] && place == 3
+                      3
+                    elsif guess == winners[place] && place == 4
+                      1
+                    elsif winners.include?(guess)
+                      1
+                    else
+                      0
+                    end
         end
         result
       end
