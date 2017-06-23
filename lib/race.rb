@@ -10,6 +10,7 @@ module RaceBet
           result += 5 if guess == winners[position] && position == 2
           result += 3 if guess == winners[position] && position == 3
           result += 1 if guess == winners[position] && position == 4
+          result += 1 if winners.include?(guess) && position != winners.index(guess)
         end
         result
       end
